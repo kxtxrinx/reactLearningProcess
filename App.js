@@ -17,15 +17,18 @@ export default function Gallery(){
     )
 }
 */
-//
+//Pure JS
 var app = document.getElementById("zone")
-
+/*
 const header = document.createElement('h1')
 
 const headerContent = document.createTextNode(
-    'Develop. Preview. Ship. 🚀', //this comma?
+    'Develop. Preview. Ship. 🚀', //this comma to avoid poss future errors :)
 )
 
 header.appendChild(headerContent)
 
 app.appendChild(header)
+*/
+//With React
+ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app)

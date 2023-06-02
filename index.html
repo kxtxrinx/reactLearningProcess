@@ -10,9 +10,47 @@
     <div id="zone"></div>
 
     <!--import zone-->
-    <script src="App.js"></script>
+    <!---<script src="App.js"></script>-->
+    <script src="App.jsx"></script>
     
+    <!--JS compiler to convert JSX code into regular JS-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script type="text/jsx">
+        var app = document.getElementById("zone")
+
+
+        //props returns an obj, title returns the value
+
+        function Header({title}){
+            console.log(title)
+            return <h1>{title}</h1>
+        }
+
+        function HomePage(){
+            const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
+
+            return( 
+                <div>
+                {/* {title} */}
+                    <Header title="React💙"/>
+                    <ul>
+                        {names.map((name)=>(
+                            <li key={name}>{name}</li>
+                        ))}
+                    </ul>
+                    <button>Like</button>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<HomePage/>, app)
+
+
+        
+    </script>
+
 </body>
 </html>
