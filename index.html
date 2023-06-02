@@ -30,7 +30,16 @@
         }
 
         function HomePage(){
+            //first array item is the state value (name it as u pref).
+            //second item is a function to update that value. common to prefix it with set + stateVarName
+            const [likes, setLikes] = React.useState(0) 
+            //0 as the default likes value
+
             const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton']
+
+            function handleClick(){
+                setLikes(likes+1)
+            }
 
             return( 
                 <div>
@@ -41,14 +50,43 @@
                             <li key={name}>{name}</li>
                         ))}
                     </ul>
-                    <button>Like</button>
+                    <button onClick={handleClick}>Like({likes})</button>
                 </div>
             )
         }
 
         ReactDOM.render(<HomePage/>, app)
 
+        export default function App(){
+            return(
+                <Toolbar
+                    onPlayMovie={()=>alert("Playing")}
+                    onUploadMovie={()=>alert("Uploading!")}
+                />
+            )
+        }
 
+        function Toolbar({onPlayMovie, onUploadMovie}){
+            return(
+                <div>
+                    <Button onClick={onPlayMovie}>
+                        Play movie
+                    </Button>
+
+                    <Button onClick={onUploadMovie}
+                        Upload movie
+                    </Button>
+                </div>
+            )
+        }
+
+        function Button({onClick, children}){
+            return(
+                <button onClick={onClick}>
+                    {children}
+                </button>
+            )
+        }
         
     </script>
 

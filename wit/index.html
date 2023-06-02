@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women in Tech</title>
+    <style>
+        img{
+            box-shadow: 0 0 10px black;
+            border-radius: 50%;
+        }
+
+        img.disabled{
+            opacity:0.3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Women in tech!</h1>
+    </div>
+    <script>
+        //$ common in DOM elements
+        const $app = document.getElementById('app')
+
+        const Avatar = params=>{
+            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
+            return `<picture>
+                        <img src="${src}" />
+                        ${params.name}
+                    </picture>`
+        }
+
+        $app.innerHTML += Avatar({id:1, name:"Jane"})
+        $app.innerHTML += Avatar({id:4, name:"Jules"})
+
+
+        document.querySelectorAll("img").forEach(img=>{
+            img.addEventListener('click',()=>{
+                img.classList.toggle('disabled')
+            })
+        })
+
+        let saludo= ()=>{
+            return "hey"
+        }
+
+    </script>
+</body>
+</html>

@@ -19,7 +19,7 @@ export default function Gallery(){
 */
 //Pure JS
 var app = document.getElementById("zone")
-/*
+
 const header = document.createElement('h1')
 
 const headerContent = document.createTextNode(
@@ -29,6 +29,6 @@ const headerContent = document.createTextNode(
 header.appendChild(headerContent)
 
 app.appendChild(header)
-*/
+
 //With React
-ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app)
+//ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app)
