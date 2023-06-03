@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Women in Tech</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <style>
         img{
             box-shadow: 0 0 10px black;
             border-radius: 50%;
+            width: 100px;
         }
 
         img.disabled{
             opacity:0.3;
+        }
+
+        picture.is-small{
+            width:50px;
+        }
+
+        picture.is-large{
+            width:200px;
         }
     </style>
 </head>
@@ -20,10 +34,61 @@
     <div id="app">
         <h1>Women in tech!</h1>
     </div>
-    <script>
+    <script type="text/babel">
         //$ common in DOM elements
         const $app = document.getElementById('app')
 
+        const h = React.createElement
+        const useState = React.useState
+
+        const Avatar = ({id, name = 'defaultValue', size})=>{
+            const src = `https://randomuser.me/api/portraits/women/${id}.jpg`
+
+            //if there's no id on avatar's attributes
+            //if(!id) return <img src="https://randomuser.me/api/portraits/lego/2.jpg"/>
+
+            const [enabled, setEnabled] = useState(true)
+
+            let pictureClassName = ""
+            if(size ==='small'){
+                pictureClassName = 'is-small'
+            }else if(size === 'large'){
+                pictureClassName === 'is-large'
+            }
+
+            const imgClassName = enabled ? '' : 'disabled' //Si está activado, string vacío, si está desactivado, añadir disabled
+
+            return (    
+            <picture className={pictureClassName}>
+                {
+                    id ? (
+                        <img onClick={()=> {
+                            setEnabled(!enabled)
+                        }} 
+                        className ={imgClassName} src={src}/>
+                    ) : <strong>No image found </strong>
+                }
+                {/*if enabled, show name, if not, show "disabled"*/}
+                    <strong>{enabled ? name : "Disabled"} </strong>
+                    </picture>
+                )
+            }
+
+        /*Avatar.defaultProps = {
+            name: 'default'
+        }*/
+
+        //componente, dónde queremos renderizarlo
+        ReactDOM.render(
+            <div>
+                <Avatar name="Susan"/>
+                <Avatar id={99} name="Anne" size="small"/>
+                <Avatar id={12} />
+                <Avatar id={9} name="JSX" size="large"/>
+            </div>,
+            $app //dónde se quiere renderizar (en el DOM de React)
+        )
+        /*
         const Avatar = params=>{
             const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
             return `<picture>
@@ -45,6 +110,7 @@
         let saludo= ()=>{
             return "hey"
         }
+        */
 
     </script>
 </body>
